@@ -222,3 +222,7 @@ msgstr "Auto select version"
 msgctxt "#33407"
 msgid "Version string to match (e.g. cantonese, english)"
 msgstr "Version string to match (e.g. cantonese, english)"
+
+msgctxt "#33408"
+msgid "Speedup creation of ListItem (experimental; kodi v18 or above)"
+msgstr "Speedup creation of ListItem (experimental; kodi v18 or above)"

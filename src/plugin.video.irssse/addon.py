@@ -7,6 +7,7 @@ import re
 from urlresolver.lib.net import Net, get_ua
 from urlresolver.hmf import HostedMediaFile
 from urlparse import parse_qsl
+from lib import common
 
 
 baseurl = 'http://irss.se/dramas'
@@ -67,7 +68,7 @@ def resolveVideo(url):
 def addDir(url, icon, title, mode):
     if url and title and mode:
         u = sys.argv[0] + '?url=' + urllib.quote_plus(url) + '&mode=' + mode
-        li = xbmcgui.ListItem(title, iconImage = 'DefaultVideo.png', thumbnailImage = icon)
+        li = common.create_ListItem(title, iconImage = 'DefaultVideo.png', thumbnailImage = icon)
         li.setInfo(type = 'Video', infoLabels = {'Title': title})
         return xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]), url = u, listitem = li, isFolder = True)
 

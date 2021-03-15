@@ -194,7 +194,7 @@ def play_mirror(url):
             except Exception:
                 # we can proceed without the title and image
                 title, image = ('', '')
-            li = xbmcgui.ListItem(title)
+            li = common.create_ListItem(title)
             li.setArt({'thumb': image})
             if 'User-Agent=' not in vidurl:
                 vidurl = vidurl + '|User-Agent=' + urllib.parse.quote(get_ua())

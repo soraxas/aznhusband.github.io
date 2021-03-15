@@ -14,6 +14,7 @@ from resolveurl.lib.net import Net, get_ua
 _plugin_url = sys.argv[0]
 _handle = int(sys.argv[1])
 _dialog = xbmcgui.Dialog()
+_speedup_listitem_with_offscreen_kw = xbmcaddon.Addon().getSetting("speedup_listitem_creation") == "true"
 
 if hasattr(xbmcvfs, 'translatePath'):
     profile_dir = xbmcvfs.translatePath(xbmcaddon.Addon().getAddonInfo('profile'))
@@ -50,12 +51,17 @@ def add_item(diritem):
 def end_dir():
     xbmcplugin.endOfDirectory(_handle)
 
+def create_ListItem(*args, **kwargs):
+    if _speedup_listitem_with_offscreen_kw and 'offscreen' not in kwargs:
+        kwargs['offscreen'] = True
+    return xbmcgui.ListItem(*args, **kwargs)
+
 def diritem(label_or_stringid, url, image='', isfolder=True, context_menu=[]):
     if type(label_or_stringid) is int:
         label = xbmcaddon.Addon().getLocalizedString(label_or_stringid)
     else:
         label = label_or_stringid
-    listitem = xbmcgui.ListItem(label)
+    listitem = create_ListItem(label)
     listitem.setArt({'icon': image})
     listitem.addContextMenuItems(context_menu, replaceItems=True)
     # this is unpackable for xbmcplugin.addDirectoryItem
