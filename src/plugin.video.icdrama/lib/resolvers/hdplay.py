@@ -35,10 +35,10 @@ class HdPlay(ResolveUrl):
             if match:
                 video_url = 'http://' + host + match.group(1)
                 return video_url + helpers.append_headers(self.headers)
-            xbmc.log(f"html: {html}", xbmc.LOGERROR)
+            xbmc.log("html: {}".format(html), xbmc.LOGERROR)
 
 
-        raise ResolverError(f"Unable to resolve url in hdplay: {response}")
+        raise ResolverError("Unable to resolve url in hdplay: {}".format(response))
 
     def get_url(self, host, media_id):
         return self._default_get_url(host, media_id, 'http://{host}/{media_id}')
